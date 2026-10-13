@@ -27,7 +27,8 @@ class Plugin extends Model implements Sortable
     ];
 
     protected $casts = [
-        'is_active' => 'boolean',
+        'is_active'    => 'boolean',
+        'is_installed' => 'boolean',
     ];
 
     public $sortable = [

@@ -10,11 +10,11 @@ The Laravel Boost guidelines are specifically curated by Laravel maintainers for
 This application is a Laravel application and its main Laravel ecosystems package & versions are below. You are an expert with them all. Ensure you abide by these specific packages & versions.
 
 - php - 8.3.21
-- filament/filament (FILAMENT) - v4
-- laravel/framework (LARAVEL) - v11
+- filament/filament (FILAMENT) - v5
+- laravel/framework (LARAVEL) - v13
 - laravel/prompts (PROMPTS) - v0
 - laravel/sanctum (SANCTUM) - v4
-- livewire/livewire (LIVEWIRE) - v3
+- livewire/livewire (LIVEWIRE) - v4
 - laravel/mcp (MCP) - v0
 - laravel/pint (PINT) - v1
 - laravel/sail (SAIL) - v1
@@ -188,14 +188,14 @@ protected function isAccessible(User $user, ?string $path = null): bool
 
 - If you receive an "Illuminate\Foundation\ViteException: Unable to locate file in Vite manifest" error, you can run `npm run build` or ask the user to run `npm run dev` or `composer run dev`.
 
-=== laravel/v11 rules ===
+=== laravel/v13 rules ===
 
-# Laravel 11
+# Laravel 13
 
 - CRITICAL: ALWAYS use `search-docs` tool for version-specific Laravel documentation and updated code examples.
-- Laravel 11 brought a new streamlined file structure which this project now uses.
+- This project uses Laravel's streamlined application structure.
 
-## Laravel 11 Structure
+## Laravel Application Structure
 
 - In Laravel 11, middleware are no longer registered in `app/Http/Kernel.php`.
 - Middleware are configured declaratively in `bootstrap/app.php` using `Application::configure()->withMiddleware()`.
@@ -213,9 +213,9 @@ protected function isAccessible(User $user, ?string $path = null): bool
 
 - Casts can and likely should be set in a `casts()` method on a model rather than the `$casts` property. Follow existing conventions from other models.
 
-## New Artisan Commands
+## Artisan Commands
 
-- List Artisan commands using Boost's MCP tool, if available. New commands available in Laravel 11:
+- List Artisan commands using Boost's MCP tool, if available. Available generators include:
     - `php artisan make:enum`
     - `php artisan make:class`
     - `php artisan make:interface`

@@ -1,0 +1,23 @@
+{
+    "name": "webkul/restaurant-pos",
+    "description": "Cloud configuration and catalog publishing for Restaurant POS",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "eCashier"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Webkul\\RestaurantPos\\RestaurantPosServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Webkul\\RestaurantPos\\": "src/"
+        }
+    }
+}

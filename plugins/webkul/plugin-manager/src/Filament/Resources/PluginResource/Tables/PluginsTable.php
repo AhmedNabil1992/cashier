@@ -281,7 +281,7 @@ class PluginsTable
 
                     collect(array_reverse($plugin->package->migrationFileNames))
                         ->each(function ($migration) use ($plugin) {
-                            $fullPath = $plugin->package->basePath("database/migrations/{$migration}.php");
+                            $fullPath = $plugin->package->basePath("database/migrations/tenant/{$migration}.php");
 
                             static::downMigration($fullPath, $migration);
                         });

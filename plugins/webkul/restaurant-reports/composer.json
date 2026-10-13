@@ -1,0 +1,1 @@
+{"name":"webkul/restaurant-reports","description":"Cloud operational reporting for restaurant plugins","version":"1.0.0","license":"MIT","authors":[{"name":"eCashier"}],"autoload":{"psr-4":{"Webkul\\RestaurantReports\\":"src/"}}}

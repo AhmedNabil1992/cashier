@@ -85,7 +85,7 @@ class UninstallCommand extends Command
         $migrations = array_reverse($this->package->migrationFileNames);
 
         foreach ($migrations as $migration) {
-            $fullPath = $this->package->basePath("../database/migrations/{$migration}.php");
+            $fullPath = $this->package->basePath("../database/migrations/tenant/{$migration}.php");
 
             $migrationPath = Str::after($fullPath, base_path().DIRECTORY_SEPARATOR);
 

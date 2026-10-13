@@ -28,6 +28,12 @@ return [
         'key' => env('RESEND_KEY'),
     ],
 
+    'platform_api' => [
+        'secret'                => env('PLATFORM_API_SECRET'),
+        'signature_ttl_seconds' => env('PLATFORM_API_SIGNATURE_TTL', 300),
+        'tenant_root_domain'    => env('TENANT_ROOT_DOMAIN', 'cashier.test'),
+    ],
+
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),

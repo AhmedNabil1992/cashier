@@ -250,7 +250,7 @@ class InstallCommand extends Command
                 continue;
             }
 
-            $fullPath = $this->package->basePath("../database/migrations/{$migration}.php");
+            $fullPath = $this->package->basePath("../database/migrations/tenant/{$migration}.php");
 
             $path = Str::after($fullPath, base_path().DIRECTORY_SEPARATOR);
 

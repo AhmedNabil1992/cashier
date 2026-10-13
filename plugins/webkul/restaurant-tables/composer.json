@@ -1,0 +1,1 @@
+{"name":"webkul/restaurant-tables","description":"Cloud floor, table and reservation management","version":"1.0.0","license":"MIT","authors":[{"name":"eCashier"}],"autoload":{"psr-4":{"Webkul\\RestaurantTables\\":"src/"}}}

@@ -1,0 +1,1 @@
+{"name":"webkul/delivery","description":"Cloud delivery zones, drivers and external channel inbox","version":"1.0.0","license":"MIT","authors":[{"name":"eCashier"}],"autoload":{"psr-4":{"Webkul\\Delivery\\":"src/"}}}

@@ -1,0 +1,1 @@
+{"name":"webkul/restaurant-kds","description":"Cloud KDS stations, routing rules and live ticket projections","version":"1.0.0","license":"MIT","authors":[{"name":"eCashier"}],"autoload":{"psr-4":{"Webkul\\RestaurantKds\\":"src/"}}}

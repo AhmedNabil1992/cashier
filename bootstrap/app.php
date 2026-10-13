@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Middleware\EnsureAuthenticatedEdgeDevice;
+use App\Http\Middleware\EnsureCanManageEdgeDevices;
+use App\Http\Middleware\EnsurePlatformIdempotency;
+use App\Http\Middleware\EnsureTenantPluginIsActive;
 use App\Http\Middleware\SetLocale;
+use App\Http\Middleware\VerifyPlatformApiSignature;
 use Filament\Notifications\Notification;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
@@ -21,6 +26,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'platform.idempotency' => EnsurePlatformIdempotency::class,
+            'platform.signature'   => VerifyPlatformApiSignature::class,
+            'tenant.plugin'        => EnsureTenantPluginIsActive::class,
+            'edge.device'          => EnsureAuthenticatedEdgeDevice::class,
+            'edge.admin'           => EnsureCanManageEdgeDevices::class,
+        ]);
+
         $middleware->web(append: [
             SetLocale::class,
         ]);

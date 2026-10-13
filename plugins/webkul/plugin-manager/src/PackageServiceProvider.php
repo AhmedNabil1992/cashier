@@ -114,26 +114,19 @@ abstract class PackageServiceProvider extends BasePackageServiceProvider
 
             $now = Carbon::now();
             foreach ($this->package->migrationFileNames as $migrationFileName) {
-                $filePath = $this->package->basePath("/../database/migrations/{$migrationFileName}.php");
+                $filePath = $this->package->basePath("/../database/migrations/tenant/{$migrationFileName}.php");
                 if (! file_exists($filePath)) {
                     // Support for the .stub file extension
                     $filePath .= '.stub';
                 }
 
                 $this->publishes([
-                    $filePath => $this->generateMigrationName(
+                    $filePath => $this->generateTenantMigrationName(
                         $migrationFileName,
                         $now->addSecond()
                     ),
                 ], "{$this->package->shortName()}-migrations");
 
-                if ($this->package->runsMigrations) {
-                    if ($this->package->isCore) {
-                        $this->loadMigrationsFrom($filePath);
-                    } elseif ($this->package->isInstalled()) {
-                        $this->loadMigrationsFrom($filePath);
-                    }
-                }
             }
 
             foreach ($this->package->settingFileNames as $settingFileName) {
@@ -150,13 +143,6 @@ abstract class PackageServiceProvider extends BasePackageServiceProvider
                     ),
                 ], "{$this->package->shortName()}-settings");
 
-                if ($this->package->runsSettings) {
-                    if ($this->package->isCore) {
-                        $this->loadMigrationsFrom($filePath);
-                    } elseif ($this->package->isInstalled()) {
-                        $this->loadMigrationsFrom($filePath);
-                    }
-                }
             }
         }
 
@@ -238,5 +224,22 @@ abstract class PackageServiceProvider extends BasePackageServiceProvider
         }
 
         return database_path($settingsPath.$now->format('Y_m_d_His').'_'.Str::of($settingFileName)->snake()->finish('.php'));
+    }
+
+    protected function generateTenantMigrationName(string $migrationFileName, Carbon $now): string
+    {
+        $migrationFileName = basename($migrationFileName);
+        $migrationFileName = preg_replace('/^\d{4}_\d{2}_\d{2}_\d{6}_/', '', $migrationFileName);
+        $length = strlen($migrationFileName) + 4;
+
+        foreach (glob(database_path('migrations/tenant/*.php')) as $filename) {
+            if (substr($filename, -$length) === $migrationFileName.'.php') {
+                return $filename;
+            }
+        }
+
+        return database_path(
+            'migrations/tenant/'.$now->format('Y_m_d_His').'_'.Str::of($migrationFileName)->snake()->finish('.php')
+        );
     }
 }

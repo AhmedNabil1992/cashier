@@ -17,6 +17,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
+use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 class CustomerPanelProvider extends PanelProvider
 {
@@ -41,6 +43,8 @@ class CustomerPanelProvider extends PanelProvider
                 fn () => view('filament.components.language-switcher'),
             )
             ->middleware([
+                InitializeTenancyByDomain::class,
+                PreventAccessFromCentralDomains::class,
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
                 StartSession::class,

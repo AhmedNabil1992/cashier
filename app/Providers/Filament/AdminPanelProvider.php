@@ -24,6 +24,8 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
+use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use Webkul\Support\Enums\NavigationGroup;
 use Webkul\Support\Filament\Pages\Profile;
 use Webkul\Support\GlobalSearchProvider;
@@ -91,6 +93,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->globalSearch(provider: GlobalSearchProvider::class)
             ->middleware([
+                InitializeTenancyByDomain::class,
+                PreventAccessFromCentralDomains::class,
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
                 StartSession::class,

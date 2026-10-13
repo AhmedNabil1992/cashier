@@ -45,7 +45,6 @@ class SupportServiceProvider extends PackageServiceProvider
             ->hasTranslations()
             ->hasRoutes(['api', 'web'])
             ->hasMigrations([
-                '2024_11_05_105102_create_plugins_table',
                 '2024_11_05_105112_create_plugin_dependencies_table',
                 '2024_12_06_061927_create_currencies_table',
                 '2024_12_10_092651_create_countries_table',
@@ -57,7 +56,6 @@ class SupportServiceProvider extends PackageServiceProvider
                 '2024_12_12_115256_create_activity_types_table',
                 '2024_12_12_115728_create_activity_plan_templates_table',
                 '2024_12_17_082318_create_activity_type_suggestions_table',
-                '2025_01_03_061444_create_email_templates_table',
                 '2025_01_03_061445_create_email_logs_table',
                 '2025_01_03_105625_create_unit_of_measure_categories_table',
                 '2025_01_03_105627_create_unit_of_measures_table',
